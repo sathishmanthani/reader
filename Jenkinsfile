@@ -10,8 +10,15 @@ pipeline {
     stage('prep env') {
       steps {
         sh '''python -m pip install flake8 pytest pytest-cov twine
-pip freeze > requirements.txt
+python -m pip freeze > requirements.txt
 '''
+      }
+    }
+
+    stage('build') {
+      steps {
+        sh '''pwd
+python setup.py sdist bdist_wheel'''
       }
     }
 
