@@ -22,5 +22,14 @@ python setup.py sdist bdist_wheel'''
       }
     }
 
+    stage('test') {
+      steps {
+        sh '''cd dist
+tar tzf realpython-reader-1.0.0.tar.gz
+twine check dist/*
+'''
+      }
+    }
+
   }
 }
